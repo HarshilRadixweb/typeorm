@@ -13,4 +13,10 @@ export const Routes = [
     controller: UserController,
     action: "save",
   },
+  {
+    method: "get",
+    route: "/getuserpagination",
+    controller: UserController,
+    action: "getUserPagination",
+  },
 ];

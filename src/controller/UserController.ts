@@ -59,4 +59,19 @@ export class UserController {
     }
     return res;
   }
+  async getUserPagination(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) {
+    let limit = request.query.limit ? parseInt(request.query.limit) : 5;
+    let start = request.query.start ? parseInt(request.query.start) : 0;
+    let query = this.userRepository
+      .select("user")
+      .from(User, "user")
+      .skip(start)
+      .take(limit);
+    const inputs = await query.getRawMany();
+    return inputs;
+  }
 }
